@@ -2,13 +2,70 @@
 ## Online Car Sale Website
 Group Project Repository
 
-This project is developed for the **Fundamentals of Web Technology** coursework.  
+This project is developed for the **Fundamentals of Web Technology** coursework.
 The goal is to design and implement an **Online Car Sale** website, where sellers can register, log in, and add car advertisements, while buyers can search for cars by model and year.
 
 The project is divided into two phases:
 
 - **Phase A**: Front-end development with HTML, CSS, and JavaScript
 - **Phase B**: Back-end development with PHP, MySQL, and session handling
+
+This branch contains the current **Next.js App Router** frontend implementation for Member 1's public integration scope: global layout, navigation, footer, shared visual shell, and the premium homepage presentation for a high-end used-car platform.
+
+---
+
+## Quick Start
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open the local site:
+
+   ```text
+   http://localhost:3000
+   ```
+
+---
+
+## Frontend Notes
+
+This branch uses:
+
+- **Next.js App Router** under `src/app/`
+- **React client components** only where browser APIs or interactivity are needed
+- **Tailwind CSS** through the global stylesheet setup
+- **Lenis** for shared smooth scrolling
+- Shared layout components in `src/components/layout/`
+- Homepage-specific components in `src/components/home/`
+
+Member 1 owns the public shell and homepage integration work. Other members should continue building only their assigned business pages and should not duplicate the global navigation, footer, or page shell inside their own route files.
+
+---
+
+## Route Ownership
+
+All routes live under `src/app/`.
+
+| Route | File | Owner |
+|---|---|---|
+| `/` | `src/app/page.js` | Member 1 - Homepage / public presentation |
+| `/register` | `src/app/register/page.js` | Member 2 - Seller registration |
+| `/login` | `src/app/login/page.js` | Member 3 - Login / session flow |
+| `/seller` | `src/app/seller/page.js` | Member 3 - Seller flow |
+| `/search` | `src/app/search/page.js` | Member 4 - Car search |
+| `/add-car` | `src/app/add-car/page.js` | Member 4 - Add car |
+| `/car/[id]` | `src/app/car/[id]/page.js` | Member 4 - Car detail |
+
+If a page needs React state, effects, DOM APIs, or event handlers, add `"use client"` as the first line of that page or component.
 
 ---
 
@@ -107,6 +164,7 @@ Each member works on their own feature branch and merges changes into `develop` 
 
 ### Phase A
 - Responsive homepage
+- Shared navigation and footer shell
 - Seller registration form
 - Login page
 - Add car page
