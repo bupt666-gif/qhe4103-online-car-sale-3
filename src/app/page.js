@@ -1,27 +1,23 @@
-import Hero from '@/components/home/Hero';
-import ModelShowcase from '@/components/home/ModelShowcase';
-import BentoBox from '@/components/home/BentoBox';
+import Hero from '@/components/home/Hero'
+import CuratedInventory from '@/components/home/CuratedInventory'
+import TrustSection from '@/components/home/TrustSection'
+import SellWithUs from '@/components/home/SellWithUs'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between overflow-hidden bg-black text-white">
-      {/* 
-        Step 3.1: Hero Section (First Screen)
-        Awwwards-style typography and entrance animations 
-      */}
+    <main className="home-root relative overflow-hidden text-foreground">
+      <div className="home-holo-silk" aria-hidden="true">
+        <span className="home-holo-silk__base" />
+        <span className="home-holo-silk__veil home-holo-silk__veil--one" />
+        <span className="home-holo-silk__veil home-holo-silk__veil--two" />
+        <span className="home-holo-silk__spot home-holo-silk__spot--left" />
+        <span className="home-holo-silk__spot home-holo-silk__spot--right" />
+        <span className="home-holo-silk__grain" />
+      </div>
       <Hero />
-      
-      {/* 
-        Step 3.2: 3D Model Showcase (ScrollTrigger Pin)
-        Displays rotating 3D car with scrolling feature texts 
-      */}
-      <ModelShowcase />
-      
-      {/* 
-        Step 3.3: Bento Box Features (Parallax & Hover Glow)
-        Highlights system capabilities with Apple-like Bento layout
-      */}
-      <BentoBox />
+      <CuratedInventory />
+      <TrustSection />
+      <SellWithUs />
     </main>
-  );
+  )
 }

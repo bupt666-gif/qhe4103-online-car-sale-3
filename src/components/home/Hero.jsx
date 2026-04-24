@@ -1,111 +1,42 @@
-'use client';
-
-import { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import Link from 'next/link'
+import DynamicHeroText from './DynamicHeroText'
+import ShowroomPoster from './ShowroomPoster'
 
 export default function Hero() {
-  const heroRef = useRef(null);
-  const textRefs = useRef([]);
-  const bgRef = useRef(null);
-
-  useGSAP(() => {
-    // Initial fade in from bottom
-    const tl = gsap.timeline();
-    tl.fromTo(
-      textRefs.current,
-      { y: 50, opacity: 0, scale: 0.95 },
-      { 
-        y: 0, 
-        opacity: 1, 
-        scale: 1, 
-        duration: 1.2, 
-        stagger: 0.2, 
-        ease: 'power4.out',
-        delay: 0.2
-      }
-    );
-
-    // Parallax background on scroll
-    gsap.to(bgRef.current, {
-      y: '30%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-
-    // Fade out text on scroll
-    gsap.to(textRefs.current, {
-      opacity: 0,
-      y: -50,
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom center',
-        scrub: true,
-      },
-    });
-  }, { scope: heroRef });
-
   return (
-    <section 
-      ref={heroRef} 
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black"
-    >
-      {/* Background with gradient overlay */}
-      <div 
-        ref={bgRef}
-        className="absolute inset-0 z-0 bg-gradient-to-b from-[#1c1c1e] to-black opacity-80"
-        style={{
-          backgroundImage: 'radial-gradient(circle at center, rgba(41,151,255,0.15) 0%, rgba(0,0,0,1) 70%)',
-        }}
-      />
-      
-      {/* Optional: Add a subtle grid or noise pattern here */}
-      <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-28">
+      <div className="hero-aurora-scrim absolute inset-0" />
+      <div className="hero-prism-light" aria-hidden="true">
+        <span className="hero-prism-light__beam" />
+        <span className="hero-prism-light__orb" />
+        <span className="hero-prism-light__line" />
+      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_46%,rgba(161,188,202,0.24),transparent_30%),radial-gradient(circle_at_16%_24%,rgba(255,112,88,0.1),transparent_26%)]" />
+      <div className="tech-grid absolute inset-0 opacity-20" />
+      <div className="hero-section-blend absolute inset-x-0 bottom-0 h-56 md:h-72" aria-hidden="true" />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-4">
-        <h2 
-          ref={(el) => (textRefs.current[0] = el)} 
-          className="text-accent font-semibold tracking-widest uppercase mb-4 text-sm md:text-base"
-        >
-          Welcome to the Future
-        </h2>
-        
-        <h1 
-          ref={(el) => (textRefs.current[1] = el)} 
-          className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-none mb-6 drop-shadow-2xl"
-        >
-          Drive <br className="md:hidden" /> Beyond.
-        </h1>
-        
-        <p 
-          ref={(el) => (textRefs.current[2] = el)} 
-          className="max-w-xl text-lg md:text-2xl text-gray-400 font-medium mb-10"
-        >
-          The most seamless way to buy and sell premium vehicles.
-          Experience automotive excellence.
-        </p>
-        
-        <div 
-          ref={(el) => (textRefs.current[3] = el)} 
-          className="flex flex-col sm:flex-row gap-4"
-        >
-          <a href="#models" className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">
-            Explore Models
-          </a>
-          <a href="/register" className="px-8 py-4 rounded-full bg-transparent border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors">
-            Become a Seller
-          </a>
+      <div className="shell-container relative z-10 py-14 md:py-20">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="relative max-w-3xl">
+            <DynamicHeroText />
+            <p className="mt-7 max-w-xl text-base leading-8 text-slate-600 md:text-lg">
+              A quieter way to discover premium used vehicles, with verified sellers, clear ownership signals, and inventory presented like a modern showroom.
+            </p>
+            <div className="hero-gooey-actions mt-8">
+              <Link href="/search" className="hero-gooey-button hero-gooey-button--primary">
+                <span>Browse Inventory</span>
+              </Link>
+              <Link href="/register" className="hero-gooey-button hero-gooey-button--secondary">
+                <span>Sell With AutoSphere</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative">
+            <ShowroomPoster />
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
