@@ -25,7 +25,7 @@ After installing one of them, start **Apache** and **MySQL** before opening the 
 4. Open the PHP homepage in a browser:
 
 ```text
-http://localhost/qhe4103-online-car-sale-2/index.php
+http://localhost/qhe4103-online-car-sale-3/index.php
 ```
 
 Adjust the folder name in the URL if your local project folder has a different name.
